@@ -1,0 +1,15 @@
+name: Metrics
+
+on:
+  schedule: [{ cron: "0 0 * * *" }]  # Atualiza todo dia
+  workflow_dispatch:  # Permite rodar manualmente
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: header, activity, community, repositories, metadata
